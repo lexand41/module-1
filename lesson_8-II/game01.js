@@ -11,17 +11,19 @@ const guessNumber = () => {
     if (isNaN(userNum)) {
       alert('Введи число');
       continue;
-    } else if (userNum === null) {
+    }
+    if (userNum === null) {
       alert('Конец игры');
       break;
     }
-
     if (parseInt(userNum) === num) {
       alert('Правильно!');
       break;
-    } else if (parseInt(userNum) > num) {
+    }
+    if (parseInt(userNum) > num) {
       alert('Больше!');
-    } else if (parseInt(userNum) < num) {
+    }
+    if (parseInt(userNum) < num) {
       alert('Меньше!');
     }
   }
