@@ -10,14 +10,14 @@ const cart = {
     this.count += n; 
   },
 
-  calculateItemPrice() {
-    this.totalPrice = this.items.reduce((sum, e) => sum + e.price * e.quant, 0);
+  calculateItemPrice(price, quant) {
+    this.totalPrice += price * quant;
   },
 
   add(id, price, quant=1) {
     this.items.push({id: id, price: price, quant: quant});
     this.increaseCount(quant);
-    this.calculateItemPrice();
+    this.calculateItemPrice(price, quant);
   },
 
   getTotalPrice() {
@@ -39,7 +39,9 @@ const cart = {
 
 cart.add('laptop', 400, 7);
 cart.add('tablet', 300, 4);
-cart.add('phone', 200);
+cart.add('phone1', 100);
+cart.add('phone2', 150);
+cart.add('phone3', 200);
 cart.add('tv', 500, 3);
 
 // cart.clear();
