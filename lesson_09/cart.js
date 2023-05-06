@@ -32,13 +32,14 @@ const cart = {
 
   print() {
     console.log(JSON.stringify(this.items));
-    console.log(this.getTotalPrice());
+    console.log(`Количество товаров в корзине: ${this.count}`);
+    console.log(`Сумма к оплате: ${this.getTotalPrice()}`);
   },
 };
 
 cart.add('laptop', 400, 7);
 cart.add('tablet', 300, 4);
-cart.add('phone', 200, 1);
+cart.add('phone', 200);
 cart.add('tv', 500, 3);
 
 // cart.clear();
