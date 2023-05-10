@@ -10,18 +10,18 @@ const cart = {
     this.count += n; 
   },
 
-  calculateItemPrice(price, quant) {
-    this.totalPrice += price * quant;
+  calculateItemPrice() {
+    return this.items.reduce((sum, e) => sum + e.price * e.quant, 0);
   },
 
   add(id, price, quant=1) {
     this.items.push({id: id, price: price, quant: quant});
     this.increaseCount(quant);
-    this.calculateItemPrice(price, quant);
+    this.calculateItemPrice();
   },
 
-  getTotalPrice() {
-    return this.totalPrice;
+  get totalPrice() {
+    return this.calculateItemPrice();
   },
 
   clear() {
@@ -33,7 +33,7 @@ const cart = {
   print() {
     console.log(JSON.stringify(this.items));
     console.log(`Количество товаров в корзине: ${this.count}`);
-    console.log(`Сумма к оплате: ${this.getTotalPrice()}`);
+    console.log(`Сумма к оплате: ${this.totalPrice}`);
   },
 };
 
@@ -44,6 +44,10 @@ cart.add('phone2', 150);
 cart.add('phone3', 200);
 cart.add('tv', 500, 3);
 
+// cart.totalPrice = 10;
+
 // cart.clear();
+
 cart.print();
+
 
