@@ -3,19 +3,18 @@
 
 const cart = {
   items: [],
-  totalPrice: 0,
   count: 0,
 
   increaseCount(n) {
-    this.count += n; 
+    this.count += n;
   },
 
   calculateItemPrice() {
     return this.items.reduce((sum, e) => sum + e.price * e.quant, 0);
   },
 
-  add(id, price, quant=1) {
-    this.items.push({id: id, price: price, quant: quant});
+  add(id, price, quant = 1) {
+    this.items.push({id, price, quant});
     this.increaseCount(quant);
     this.calculateItemPrice();
   },
