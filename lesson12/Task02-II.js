@@ -4,13 +4,18 @@
 const cart = {
   items: [],
   count: 0,
+  discount: 0,
 
   increaseCount(n) {
     this.count += n;
   },
 
   calculateItemPrice() {
-    return this.items.reduce((sum, e) => sum + e.price * e.quant, 0);
+    let fullPrice = this.items.reduce((sum, e) =>
+      sum + e.price * e.quant, 0);
+    let discount = this.items.reduce((sum, e) =>
+      sum + e.price * e.quant, 0) * this.discount / 100;
+    return fullPrice - discount;
   },
 
   add(id, price, quant = 1) {
@@ -23,9 +28,17 @@ const cart = {
     return this.calculateItemPrice();
   },
 
+  set setDiscount(promocode) {
+    if (promocode === 'METHED') {
+      this.discount = 15;
+    }
+    if (promocode === 'NEWYEAR') {
+      this.discount = 21;
+    }
+  },
+
   clear() {
     this.items = [];
-    this.totalPrice = 0;
     this.count = 0;
   },
 
@@ -43,10 +56,10 @@ cart.add('phone2', 150);
 cart.add('phone3', 200);
 cart.add('tv', 500, 3);
 
-// cart.totalPrice = 10;
+cart.setDiscount = 'METHED';
+cart.setDiscount = 'NEWYEAR';
+cart.setDiscount = 'NEWYEAR';
 
 // cart.clear();
-
 cart.print();
-
 
