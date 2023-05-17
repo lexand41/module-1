@@ -26,14 +26,14 @@
         alert('Конец игры');
         return;
       } else {
-        userStep = userStep.toLowerCase(); 
+        userStep = userStep.toLowerCase()[0]; 
       };
 
-      if (rock.includes(userStep) && userStep !== '') {
+      if (rock[0].includes(userStep) && userStep !== '') {
         userStep = rock;
-      } else if (scissors.includes(userStep) && userStep !== '') {
+      } else if (scissors[0].includes(userStep) && userStep !== '') {
         userStep = scissors;
-      } else if (paper.includes(userStep) && userStep !== '') {
+      } else if (paper[0].includes(userStep) && userStep !== '') {
         userStep = paper;
       } else {
         start();
