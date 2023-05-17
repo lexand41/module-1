@@ -16,8 +16,8 @@
       computer: 0,
     };
 
-    const lang = language === 'EN' || language === 'ENG' ?
-      FIGURES_END : FIGURES_RUS;
+    const e = language === 'EN' || language === 'ENG';
+    const lang = e ? FIGURES_END : FIGURES_RUS;
     
     return function start() {
       const rock = lang[0];
@@ -28,7 +28,7 @@
       let userStep = prompt(lang);
 
       if (userStep === null) {
-        alert('Конец игры');
+        alert(e ? 'Game over' : 'Конец игры');
         return;
       } else {
         userStep = userStep.toLowerCase()[0]; 
@@ -42,13 +42,14 @@
         userStep = paper;
       } else {
         start();
-      };
+      }; //  Пока не придумал, чем заменить здесь "else if" - эта конструкция и присваивает и проверяет).
 
       const comb = userStep[0] + compStep[0];
 
       const yesOrNo = () => {
-        if (confirm('Ещё?') === false) {
-          confirm('Вы точно хотите выйти?') === true ? alert('Конец игры') : start();
+        if (confirm(e ? 'More' : 'Ещё?') === false) {
+          confirm(e ? 'Are you sure you want to go out?' : 'Вы точно хотите выйти?') === true ?
+            alert(e ? 'Game over' : 'Конец игры') : start();
         } else {
           start();
         }
@@ -61,7 +62,7 @@
         case 'rr':
         case 'ss':
         case 'pp':
-          alert(`Компьютер: ${compStep}\nВы: ${userStep}\n  Ничья`);
+          alert(`${e ? 'Computer' : 'Компьютер'}: ${compStep}\n${e ? 'You' : 'Вы'}: ${userStep}\n ${e ? 'Draw' : 'Ничья'}`);
           yesOrNo();
           break;
 
@@ -71,7 +72,7 @@
         case 'rs':
         case 'sp':
         case 'pr':
-          alert(`Компьютер: ${compStep}\nВы: ${userStep}\n  Вы победили!`);
+          alert(`${e ? 'Computer' : 'Компьютер'}: ${compStep}\n${e ? 'You' : 'Вы'}: ${userStep}\n ${e ? 'You won' : 'Вы победили'}!`);
           resault.player++;
           yesOrNo();
           break;
@@ -82,12 +83,12 @@
         case 'sr':
         case 'ps':
         case 'rp':
-          alert(`Компьютер: ${compStep}\nВы: ${userStep}\n  Вы проиграли`);
+          alert(`${e ? 'Computer' : 'Компьютер'}: ${compStep}\n${e ? 'You' : 'Вы'}: ${userStep}\n ${e ? 'You lose' : 'Вы проиграли'}`);
           resault.computer++;
           yesOrNo();
           break;
       };
-      alert(`Результат:\n  Компьютер ${resault.computer},\n  Вы ${resault.player}`);
+      alert(`${e ? 'Result' : 'Результат'}:\n   ${e ? 'Computer' : 'Компьютер'}: ${resault.computer}\n    ${e ? 'You' : 'Вы'}: ${resault.player}`);
     };
   };
 
